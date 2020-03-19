@@ -1,0 +1,449 @@
+<!doctype html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Welcome to Burlesque."];
+  
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h1
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 2000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+</script>
+<html>
+	
+<head>
+	
+<!--The following displays language used in browser to interpret page -->
+<meta charset="UTF-8">
+
+<!--The following line of code displays the page title on a browser tab -->
+<title>Neo Burlesque|410</title>
+
+<!--link tags are for linking to external files, in this case your CSS stylesheet-->
+<link href="style.css" rel="stylesheet" type="text/css">
+	
+<!--link tags are for linking to external files, in this case a special CSS stylesheet-->
+<link href="normalize.css" rel="stylesheet" type="text/css">
+
+<!--the following tag tells the browser to adjust the site according to screen size-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--The following code links to the jquery library -->
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+
+<!--The following code links to the javascript file that runs the slideshow -->	
+<script type="text/javascript" src="js/jquery.cycle2.min.js"></script>
+    
+<!--The following code links to the javascript file that runs the parallax image -->    
+<script src="js/parallax.min.js"></script>
+	
+<!--The following code links to Google Fonts-->
+
+<link href="https://fonts.googleapis.com/css?family=Fascinate+Inline|Open+Sans&display=swap" rel="stylesheet">
+	
+<!--The following javscript runs the jquery slideshow -->
+<script type="text/javascript">
+$('#slider').cycle({});
+</script>
+
+<!--The following javascript runs the nav bar which disappears on scroll-->
+<script type="text/javascript">
+// Hide Header on on scroll down
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = $('header').outerHeight();
+
+$(window).scroll(function(event){
+    didScroll = true;
+});
+
+setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 250);
+
+function hasScrolled() {
+    var st = $(this).scrollTop();
+    
+    // Make sure they scroll more than delta
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    // If they scrolled down and are past the navbar, add class .nav-up.
+    // This is necessary so you never see what is "behind" the navbar.
+    if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('header').removeClass('nav-down').addClass('nav-up');
+    } else {
+        // Scroll Up
+        if(st + $(window).height() < $(document).height()) {
+            $('header').removeClass('nav-up').addClass('nav-down');
+        }
+    }
+    
+    lastScrollTop = st;
+}
+</script>
+    
+<!--Favicon - images are in a folder called 'fav'-->
+<link rel="apple-touch-Icon" sizes="180x180" href="img/fav/favicon-180x180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/fav/favicon-16x16.png">
+<link rel="manifest" href="img/fav/site.webmanifest">
+<link rel="mask-icon" href="img/fav/favicon-512x512.png" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<!--End Favicon-->
+    
+<!--back to top button-->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}    
+</script>   
+</head>
+
+<body>
+
+<!--beginning of navigation section-->
+<header>
+<div class="nav-container">
+<div class="brand"><img src="img/bbp.png" width="110" height="80" alt="Gliterrotica:Behind the scenes"/></div>
+<nav>
+<div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+  <ul class="nav-list">
+        <li>
+          <a href="#home">Glitterotica</a>
+        </li>
+	   <li>
+          <a href="#gal">Before the Show</a>
+		  </li>
+	  	<li>
+          <a href="#tl">Burlesque?</a>
+        </li>
+        <li>
+          <a href="#vid">Stage and Story</a>
+			</li>
+      <li>
+          <a href="#num">History</a>
+			</li>
+      </ul>
+</nav>
+</div>
+<!--closing navigation tag-->
+</header>
+<!--end of navigation section-->
+  
+
+<!--main image-->
+<div class="container">  
+    <div>  <h1 class="ml15">
+  <span class="word">NEO</span>
+  <span class="word">Burlesque</span>
+</h1>
+    </div>
+</div>
+<!--animated welcome-->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<div class="wrapper">
+<!--animated welcome code here-->
+    <script>
+        anime.timeline({loop: true})
+  .add({
+    targets: '.ml15 .word',
+    scale: [14,1],
+    opacity: [0,1],
+    easing: "easeOutCirc",
+    duration: 800,
+    delay: (el, i) => 800 * i
+  }).add({
+    targets: '.ml15',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+    </script>
+</div>
+    
+<!--beginning of main content area-->
+    
+<div class="row blackG">
+<h2 id="home">Heading</h2>
+<article>
+<p class="tab">Tradtional Burlesque was defined by satirical skits of popular literature as well as striptease and elaborate dance performances. Neo Burlesque takes it up a notch by allowing an anything goes approach to perfomance.<br><br>Enter Glitterotica a Neo Burlesque Troope based in San Luis Obispo. This year's their having a Valentine's Day show. With ten acts and twelve performers, the troupe prepared for over four weeks to prepare.</p>
+<p class="tab"><a href="#gal">Navigation</a></p>
+</article>
+</div>
+
+<!--beginning of parallax image-->
+<div class="parallax" data-parallax="scroll" data-bleed="10" data-speed="0.2" iosFix="true" data-image-src="img/dsc4.gif">
+</div>
+<!--end of parallax image-->
+    
+    
+    
+    
+    <!--beginning of slideshow section-->
+<div class="row blueBG"><!--beginning of row-->
+<h2 id="gal">before the show.</h2>
+<article><!--beginning of article-->
+<p class="tab">Bethany Porta aka the Tempestress is the newest Glitterotica preformer. Follow their journery to the live stage.</p>
+<!--beginning of slideshow-->
+<div id="slider"
+data-cycle-caption="#alt-caption"
+data-cycle-caption-template="{{alt}}"
+data-cycle-fx="scrollHorz"
+data-cycle-pause-on-hover="true"
+data-cycle-speed="200">
+<div class="cycle-prev"></div>
+<div class="cycle-next"></div>
+<img src="img/F1.jpg" width="100%" height="100%" alt="It’s a Tuesday night in Arroyo Grande, CA. Unbeknownst to neighbors, SLO burlesque troupe Glitterotica rehearse in a unit behind one of the houses. CAL POLY SLO Political Science and Ethnic Studies senior Bethany Porta (left), who uses they/them pronouns, stretches before practice their striptease routine. When they turned 21, they joined the troupe. “I live with my grandparents in Pismo. Unfortunately, my grandmother told my parents I joined and long story short--they were not pleased,” Porta recalled."/>
+<img src="img/F4.jpg" width="100%" height="100%" alt="Twenty minutes later, Porta gears up for one of the dance numbers in the Glitterotica founder (not pictured), Alex Milaychev’s, bathroom. They are careful not to rip the stocking because the cost of costumes has recently put a financial strain on Porta. In two weeks, they will find out whether they got the job at GALA (Gay and Lesbian Alliance)  in downtown SLO."/>
+<img src="img/F3.jpg" width="100%" height="100%" alt="“ It’s sensuality. It’s confidence. It’s skill. But most of all, it’s freeing medium that means something different to different people,” said Alex Milaychev, the founder of Glitterotica, partially pictured in neon orange stockings. Porta slightly dodges Milyachev’s heels after a timing error occurred. They continue the number without any incident."/>
+<img src="img/F6.jpg" width="100%" height="100%" alt="Porta tries to stretch while waiting for direction. Their feet still ache from wearing the high heeled boots for most of the day. Because they accidentally forgot their business casual shoes, Porta went to the GALA interview in the platform boots."/>
+<img src="img/F5.jpg" width="100%" height="100%" alt="Porta is filled with anxiety as they get ready to perform their piece; Since school and other obligations such as heading CAL POLY SLO Students for Quality Education (SQE) take up much of their time, there was a rushed practice hours before rehearsal. They fear they won’t remember most of the choreography. They try not to let their frustration show as they rifle through their belongings. Glitterotica only has a couple of shows a year, so there leaves little opportunity for improvement."/>
+<img src="img/F9.jpg" width="100%" height="100%" alt="Glitterotica stage manager Sarryh Harris whose stage name in the troupe is Fisted Sister spoons Porta as they watch other performers rehearse. The spooning is a welcome gesture to Porta who is still worried about their performance coming up next. Porta and Harris are family friends with Harris taking on a guardian role to Porta in the troupe. Harris is the one who encourages Porta to join after they turned 21. “To bring people to an opportunity is a favor. To bring family to an opportunity is something special,” said Harris.
+"/>
+<img src="img/F2.jpg" width="100%" height="100%" alt="Here, Porta hums to the Earned it by the Weeknd the music for their dance piece. Twenty minutes prior, stage manager Sarryh Harris (not pictured) instructed Porta to emote more. Frustrated by messing up the choreography, Porta soon realizes they keep tripping on the skirt. The only option was to hike up the skirt and continue practicing."/>
+<img src="img/F7.jpg" width="100%" height="100%" alt="The other burlesque dancers watch in bated breath as Porta slowly eases into a split. Days before, Porta saw a chiropractor after complaining of back pain the first couple practices. Stage Manager Syrrah Harris (not pictured) waits in the wings in case anything goes south. Luckily, Porta cleanly executes the split and is met with loud cheers and approval."/>
+<img src="img/F8.jpg" width="100%" height="100%" alt="Porta’s music she emailed prior to practice is unable to open. While the issue is being fixed, Porta stares away from the other performers, still shaky on the choreography. Porta prefaces their performance by saying that the piece is still very choppy to which was met with aggressive reassurance from troupe members."/>
+<img src="img/F10.jpg" width="100%" height="100%" alt="Rehearsals are starting to wrap up. Porta (left) and troupe member, who preferred to go by their stage name Beatrix Hotter, wait for logistics for the Upcoming Valentine's Day show. Porta has a short drive back to Pismo, but an even shorter time for panic to set in if they don’t master the choreography by next Tuesday’s practice."/>
+</div><!--end of slideshow-->
+<!--beginning of slideshow caption-->
+<div id="alt-caption" class="center">
+</div><!--end of slideshow caption-->
+<p class="tab"><a href="#tl">Navigation</a></p>
+</article><!--end of article-->
+</div><!--end of row-->
+<!--end of slideshow section-->
+    
+<!--beginning of parallax image-->
+<div class="parallax" data-parallax="scroll" data-bleed="10" data-speed="0.2" iosFix="true" data-image-src="img/bim.gif">
+</div>
+<!--end of parallax image-->
+    
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+<span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
+    <span class="dot" onclick="currentSlide(8)"></span>
+    <span class="dot" onclick="currentSlide(9)"></span>
+    <span class="dot" onclick="currentSlide(10)"></span>
+</div>
+        <script>
+            var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+        </script>
+<!--end of slideshow section-->
+	
+<!--beginning of audio section-->
+<div class="row blueBG">
+<h2 id="tl">Burlesque?</h2>
+<article>
+    <p> We asked three people the same question: What the heck is burlesque?</p>
+    
+  <p class="tab">Click on images to hear their responses <br>(Double-click to pause audio)</p>
+    
+  <div class="table">
+	<div id="trip">
+<audio id="audio_1">
+    <source src="audio/1.mp3" type="audio/mpeg" />
+</audio>        
+<audio id="audio_2">
+    <source src="audio/2.mp3" type="audio/mpeg" />
+</audio>        
+<audio id="audio_3">
+	<source src="audio/3.mp3" type="audio/mpeg" />
+</audio>
+        
+<img src="img/rollover/1.gif" class="rollover" alt="description" onMouseOver="this.src='img/rollover/1.jpg'" onMouseOut="this.src='img/rollover/1.gif'" onClick="document.getElementById('audio_1').play(); return false;" onDblClick="document.getElementById('audio_1').pause(); return false;">
+ /&gt; 
+            
+<img src="img/rollover/2.gif" class="rollover" alt="description" onMouseOver="this.src='img/rollover/2.jpg'" onMouseOut="this.src='img/rollover/2.gif'" onClick="document.getElementById('audio_2').play(); return false;" onDblClick="document.getElementById('audio_2').pause(); return false;">
+ /&gt;
+            
+<img src="img/rollover/3.gif" class="rollover" alt="description" onMouseOver="this.src='img/rollover/3.jpg'" onMouseOut="this.src='img/rollover/3.gif'" onClick="document.getElementById('audio_3').play(); return false;" onDblClick="document.getElementById('audio_3').pause(); return false;">
+/&gt;
+	</div>
+</div>
+<p class="tab"><a href="#vid">Navigation</a></p>		
+</article>
+</div>
+<!--end of audio section-->
+    
+<!--beginning of parallax image-->
+<div class="parallax" data-parallax="scroll" data-bleed="10" data-speed="0.2" iosFix="true" data-image-src="img/gim.gif">
+</div>
+<!--end of parallax image-->
+
+<!--beginning of video section-->
+<div class="row orangeBG">
+<h2 id="vid">Stage and Story</h2>
+<article>
+<p class="tab">See how two dancers used their backgrounds to hone their talents on stage.</p>	
+<video width="100%" height="100%" poster="img/subscribe.png" controls>
+<source src="img/video.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<p class="tab"><a href="#num">Navigation</a></p>
+</article>
+</div>
+<!--end of video section-->
+  
+<!--beginning of infographic section-->
+<div class="row blueBG">
+<article>
+<p class="tab"></p>
+<!--infographic embed code here-->
+    <div class="piktowrapper-embed" style="height: 300px; position: relative;" data-uid="44874807-burlesque"><div class="pikto-canvas-wrap"><div class="pikto-canvas"><div class="embed-loading-overlay" style="width: 100%; height: 100%; position: absolute; text-align: center;"><img width="60px" alt="Loading..." style="margin-top: 100px" src="https://create.piktochart.com/loading.gif"/><p style="margin: 0; padding: 0; font-family: Lato, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 16px">Loading...</p></div></div></div></div><script>(function(d){var js, id="pikto-embed-js", ref=d.getElementsByTagName("script")[0];if (d.getElementById(id)) { return;}js=d.createElement("script"); js.id=id; js.async=true;js.src="https://create.piktochart.com/assets/embedding/embed.js";ref.parentNode.insertBefore(js, ref);}(document));</script>
+</div>
+<!--end of infographic section-->
+	
+<!--beginning of footer-->
+<footer>Neo Burlesque | San Luis Obispo, CA | <a href="mailto: momo55ejen@gmail.com?Subject=Inquiry" target="_top">Send Email</a> | Copyright 2020 | Site by Monique Ejenuko 
+</footer>
+<!--end of footer-->
+	
+</body>
+	
+<!--the following script controls the responsive navigation-->
+<script>
+	(function($) { // Begin jQuery
+  $(function() { // DOM ready
+    // If a link has a dropdown, add sub menu toggle.
+    $('nav ul li a:not(:only-child)').click(function(e) {
+      $(this).siblings('.nav-dropdown').toggle();
+      // Close one dropdown when selecting another
+      $('.nav-dropdown').not($(this).siblings()).hide();
+      e.stopPropagation();
+    });
+    // Clicking away from dropdown will remove the dropdown class
+    $('html').click(function() {
+      $('.nav-dropdown').hide();
+    });
+    // Toggle open and close nav styles on click
+    $('#nav-toggle').click(function() {
+      $('nav ul').slideToggle();
+    });
+    // Hamburger to X toggle
+    $('#nav-toggle').on('click', function() {
+      this.classList.toggle('active');
+    });
+  }); // end DOM ready
+})(jQuery); // end jQuery
+	</script>
+	<script>
+	var headertext = [];
+var headers = document.querySelectorAll("#miyazaki th"),
+tablerows = document.querySelectorAll("#miyazaki th"),
+tablebody = document.querySelector("#miyazaki tbody");
+for(var i = 0; i < headers.length; i++) {
+	var current = headers[i];
+	headertext.push( current.textContent.replace( /\r?\n|\r/,"") );
+}
+for (var i = 0, row; row = tablebody.rows[i]; i++) {
+	for (var j = 0, col; col = row.cells[j]; j++) {
+		col.setAttribute("data-th", headertext[j]);
+	}
+}
+</script>
+	
+	<!----Prevents audio tracks from playing simultaneously---->
+<script>
+document.addEventListener('play', function(e){
+    var audios = document.getElementsByTagName('audio');
+    for(var i = 0, len = audios.length; i < len;i++){
+        if(audios[i] != e.target){
+            audios[i].pause();
+        }
+    }
+}, true);
+    </script>
+
+</html>
